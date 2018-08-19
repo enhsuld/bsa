@@ -1,0 +1,45 @@
+{
+  "name": "altair_admin_angularJS",
+  "version": "2.13.0",
+  "description": "Altair Admin Material Design UIkit Template",
+  "main": "index.html",
+  "scripts": {
+    "setup": "npm install && bower install && gulp",
+    "clean-setup": "npm run cleanup && npm run setup",
+    "cleanup": "rm -rf node_modules && rm -rf bower_components"
+  },
+  "keywords": [
+    "admin",
+    "panel",
+    "material design",
+    "dashboard",
+    "angular js"
+  ],
+  "author": "tzd",
+  "license": "http://themeforest.net/licenses",
+  "homepage": "http://altair.tzdthemes.com",
+  "private": true,
+  "devDependencies": {
+    "browser-sync": "^2.23.5",
+    "chalk": "^2.3.0",
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^4.1.0",
+    "gulp-clean-css": "^3.9.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-jshint": "^2.1.0",
+    "gulp-jsonminify": "^1.1.0",
+    "gulp-less": "^3.4.0",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-size": "^3.0.0",
+    "gulp-sourcemaps": "^2.6.3",
+    "gulp-uglify": "^3.0.0",
+    "gulp-wrapper": "^1.0.0",
+    "jshint": "^2.9.5",
+    "merge-stream": "^1.0.1",
+    "os-utils": "0.0.14",
+    "require-dir": "^0.3.2",
+    "run-sequence": "^2.2.1"
+  }
+}

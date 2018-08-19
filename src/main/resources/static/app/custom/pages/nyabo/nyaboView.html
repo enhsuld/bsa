@@ -1,0 +1,183 @@
+<div id="page_content">
+        <div id="page_content_inner">
+
+			<div class="uk-grid" data-uk-grid-margin>
+				<div class="uk-width-medium-1-1">
+					<div class="md-card">
+						<div class="md-card-content">
+							<kendo-grid  options="pmenuGrid"></kendo-grid>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="uk-modal" id="modal_update">
+				<div class="uk-modal-dialog uk-modal-dialog-medium" data-uk-grid-margin>
+					<button type="button" id="closemodal" class="uk-modal-close uk-close uk-close-alt"></button>
+					<h3 class="heading_a">Тайлан татуулах</h3>
+					<form name="formFile" id="form_validation_dif" class="uk-form-stacked" ng-submit="submitUploadDifference()">
+						<hr style="margin-bottom:10px;">
+						<div class="md-card">
+							<div class="md-card-content">
+								<div class="uk-grid">
+									<div class="uk-width-1-1">
+
+											<div id= "file_upload-drop" class="uk-file-upload">
+												<p class="uk-text">Excel</p>
+												<span style="margin-top:15px;" class="uk-form-file md-btn" ngf-select ngf-max-size="20MB" ng-model="afl" required name="afl">сонгох</span>
+												<div style="height:15px; margin-top:15px;">
+													<p class="uk-text-danger uk-text-small uk-margin-small-bottom" ng-show="formFile.afl.$error.required" style="height:15px;">*файлаа сонгоно уу</p>
+												</div>
+												<div style="height:15px;margin-top:-15px;">
+													<p class="uk-text-primary uk-text-small uk-margin-small-bottom" style="height:15px;" ng-show="!formFile.afl.$error.required">файл сонгогдлоо</p>
+												</div>
+											</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="uk-modal-footer uk-text-right">
+							<button type="submit" class="md-btn md-btn-primary md-btn-wave-light waves-effect waves-button waves-light" ng-show="!formFile.afl.$error.required">Илгээх</button>
+							<button type="button" class="md-btn md-btn-flat uk-modal-close">Хаах</button>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="uk-modal uk-modal-card-fullscreen" id="modal_zuruu">
+					<div class="uk-modal-dialog uk-modal-dialog-blank">
+						<div class="md-card uk-height-viewport">
+							<div class="md-card-toolbar">
+								<span class="md-icon material-icons uk-modal-close">&#xE5C4;</span>
+								<h3 class="md-card-toolbar-heading-text">
+										Тайлангийн зөрүү
+								</h3>
+							</div>
+							<div class="md-card-content">
+									<kendo-grid  options="mainGridOptions"></kendo-grid>
+							</div>
+						</div>
+					</div>
+				</div>
+
+								
+			<div ng-if="formula.length>0" class="uk-grid" data-uk-grid-margin>
+	             <div class="uk-width-medium-1-1">    
+             		<div class="md-card">
+			     		<div class="md-card-content nnn">		           
+		             		<table class="uk-table uk-table-condensed">
+	                            <thead>
+	                            <tr>
+	                                <th>Хүснэгтийн нэр</th>
+	                                <th>Алдааны мэдээлэл</th>
+	                            </tr>
+	                            </thead>
+	                            <tbody>
+	                            <tr ng-repeat="item in formula">
+	                                <td>{{item.sheet}}</td>
+	                                <td>{{item.error}}</td>
+	                            </tr>
+	                            </tbody>
+	                        </table>
+			            </div>  
+         			</div>
+	        	 </div>
+        	 </div>
+        	 
+             
+             <div class="md-card"  ng-if="ars.length>0">
+			     <div class="md-card-content">
+			       	     <h3 class="uk-modal-title" ng-if="errList.additionalSheet.length>0" >Зөрүүтэй хүснэгт</h3>
+			             <div class="uk-grid" id="acc" ng-if="errList.additionalSheet.length>0">
+			                <div class="uk-width-1-1">
+			                	<div class="uk-overflow-container">
+			                        <table class="uk-table uk-table-condensed">
+			                            <thead>
+			                            <tr>
+			                                <th>Хүснэгтийн нэр</th>
+			                            </tr>
+			                            </thead>
+			                            <tbody>
+			                            <tr ng-repeat="item in errList.additionalSheet">
+			                                <td>{{item.sheetname}}</td>
+			                            </tr>
+			                            </tbody>
+			                        </table>
+			                    </div>
+			                </div>
+			            </div>  
+			            <h3 class="uk-modal-title" ng-if="errList.prefilter.length>0" >Зөрүүтэй баганы хүснэгт</h3>
+			            <div class="uk-overflow-container">
+				            <div class="uk-grid" id="acc" ng-if="errList.prefilter.length>0">
+				                <div class="uk-width-1-1">                	
+			                        <table class="uk-table uk-table-condensed">
+			                            <thead>
+			                            <tr>
+			                                <th>Хүснэгтийн нэр</th>
+			                                <th>Загварын багана</th>
+			                                <th>Зөрүүтэй багана</th>
+			                            </tr>
+			                            </thead>
+			                            <tbody>
+			                            <tr ng-repeat="item in errList.prefilter">
+			                                <td>{{item.sheetname}}</td>
+			                                <td>{{item.bagana2}}</td>
+			                                <td>{{item.bagana}}</td>
+			                            </tr>
+			                            </tbody>
+			                        </table>
+			                    </div>
+			                </div>
+			            </div>
+			            <div class="uk-grid" id="acc" ng-if="ars.length>0">
+			                <div class="uk-width-1-1">
+			                	<div class="uk-overflow-container">
+			                        <table class="uk-table uk-table-condensed">
+			                            <thead>
+			                            <tr>
+			                                <th>Хүснэгтийн нэр</th>
+			                                <th>Дансны код (байх ёстой)</th>
+			                                <th>Зөрүүтэй данс</th>
+			                            </tr>
+			                            </thead>
+			                            <tbody>
+			                            <tr ng-repeat="item in ars">
+			                                <td>{{item.sheet}}</td>
+			                                <td>{{item.code1}}</td>
+			                                <td>{{item.code2}}</td>
+			                            </tr>
+			                            </tbody>
+			                        </table>
+			                    </div>
+			                </div>
+			            </div> 
+			     </div>
+			 </div> 
+			 
+			 <!--<div class="uk-grid" data-uk-grid-margin>
+	             <div class="uk-width-medium-1-1">    
+             		<div class="md-card">
+			     		<div class="md-card-content">		           
+		             	     <div id="spreadSheetZagwarView" style="width:100%;height:1000px"></div>
+			            </div>  
+         			</div>
+	        	 </div>
+        	 </div>  -->
+        </div>
+    </div>
+	<div ng-include="'app/views/footer.html'"></div>
+	<script type="text/x-kendo-template" id="add">
+		<div style="width: 195px; float: left;" style="text-align:left;">
+			<button class="k-button k-button-icontext" ng-click='res()'  data-uk-modal="{target:'\\#modal_update'}"> <span class='k-icon k-i-plus'></span>Тайлан татах</button>
+		</div>
+	</script>
+	 <script type="text/x-kendo-template" id="download">
+		<div id="details-container" style="float:left;">
+			<button class="md-btn md-btn-small md-btn-primary" ng-click="tulgalt(dataItem)" download> </span>Тулгалт</button>
+		</div>
+         <div id="details-container" style="float:left;margin-left:10px;">
+           <a class="md-btn md-btn-small md-btn-primary" href="/api/file/download/#:id#" download> </span>Татах</a>
+         </div>
+    </script>
+	
