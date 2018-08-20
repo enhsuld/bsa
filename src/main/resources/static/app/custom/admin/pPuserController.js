@@ -59,32 +59,32 @@ angular
 
             $scope.addUser = function() {
                 var mdl = UIkit.modal("#modal_update_user");
-                if($scope.ud.planid!=0){
-                    mainService.withdata('PUT',__env.apiUrl()+'/core/useradd/'+$scope.ud.id, $scope.ud)
-                        .then(function(data){
+               /* if($scope.ud.planid!=0){
 
-                            if(data.re==5){
-                                sweet.show('Анхаар', 'Хэрэглэгч давхцаж байна.', 'warning');
-                            }
-                            else if(data.re==1){
-                                sweet.show('Мэдээлэл', 'Амжилттай засагдлаа.', 'success');
-                                mdl.hide();
-                            }
-                            else if(data.re==0){
-                                sweet.show('Мэдээлэл', 'Амжилттай засагдлаа.', 'success');
-                                mdl.hide();
-                            }
-                            $scope.ud = {
-                                "id":0
-                            };
-                            $(".k-grid").data("kendoGrid").dataSource.read();
-                        });
                 }
                 else{
                     sweet.show('Анхаар', 'Багцаа сонгоно уу.', 'warning');
-                }
+                }*/
 
-            }
+                mainService.withdata('PUT',__env.apiUrl()+'/core/useradd/'+$scope.ud.id, $scope.ud)
+                    .then(function(data){
+                    if(data.re===5){
+                        sweet.show('Анхаар', 'Хэрэглэгч давхцаж байна.', 'warning');
+                    }
+                    else if(data.re===1){
+                        sweet.show('Мэдээлэл', 'Амжилттай засагдлаа.', 'success');
+                        mdl.hide();
+                    }
+                    else if(data.re===0){
+                        sweet.show('Мэдээлэл', 'Амжилттай засагдлаа.', 'success');
+                        mdl.hide();
+                    }
+                    $scope.ud = {
+                        "id":0
+                    };
+                    $(".k-grid").data("kendoGrid").dataSource.read();
+                });
+            };
 
             $scope.selectize_a_config = {
                 plugins: {

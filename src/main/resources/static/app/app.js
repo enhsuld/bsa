@@ -65,6 +65,30 @@ altairApp.config(function($breadcrumbProvider) {
     });
 });
 
+altairApp.factory('authHttpResponseInterceptor',['$q','$location','$injector',function($q,$location,$injector){
+    return {
+        response: function(response){
+            if (response.status === 401) {
+                console.log("Response 401");
+            }
+            return response || $q.when(response);
+        },
+        responseError: function(rejection) {
+            if (rejection.status === 401) {
+                $injector.get('$state').transitionTo('login');
+                // $location.path('/login').search('returnTo', $location.path());
+            }
+            return $q.reject(rejection);
+        }
+    }
+}])
+.config(['$qProvider', function ($qProvider) {
+    $qProvider.errorOnUnhandledRejections(false);
+}])
+.config(['$httpProvider',function($httpProvider) {
+    $httpProvider.interceptors.push('authHttpResponseInterceptor');
+}]);
+
 /* detect IE */
 function detectIE(){var a=window.navigator.userAgent,b=a.indexOf("MSIE ");if(0<b)return parseInt(a.substring(b+5,a.indexOf(".",b)),10);if(0<a.indexOf("Trident/"))return b=a.indexOf("rv:"),parseInt(a.substring(b+3,a.indexOf(".",b)),10);b=a.indexOf("Edge/");return 0<b?parseInt(a.substring(b+5,a.indexOf(".",b)),10):!1};
 

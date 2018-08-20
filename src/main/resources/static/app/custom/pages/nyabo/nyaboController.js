@@ -221,12 +221,12 @@ angular
 						  $(".tulgaltRed").parent().addClass("md-bg-red-100");
 						},
 		  };
-		}
-			
+		};
+		var modalUp = UIkit.modal("#modal_update");
 		$scope.zuruuGrid=false;
 		$scope.uploadNotlohZuil = function (file,y) {
 			  var xurl="";
-			  if(y==1){
+			  if(y===1){
 				  xurl=__env.apiUrl()+'/api/checker';
 			  }		
 			  else{
@@ -238,7 +238,9 @@ angular
 			  }).then(function (resp) {
 				  console.log(resp);
 				  if(resp){
-					  sweet.show('Анхаар!', 'Тулгалт товч дээр дарж зөрүүгээ шалгана уу!!!', 'success');
+                      modalUp.hide();
+                      $(".k-grid").data("kendoGrid").dataSource.read();
+                      sweet.show('Амжилттай!', 'Тулгалт товч дээр дарж зөрүүгээ шалгана уу!!!', 'success');
 				  }
 				  progressbar.removeClass("uk-hidden");
 				  console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
@@ -301,7 +303,7 @@ angular
 		  
 		  
 			$scope.downloadExcel=function(){
-				if(user_data.plan!="basic"){
+				if(user_data.plan!=="basic"){
 				  $rootScope.content_preloader_show();
 					mainService.withdomain('get',__env.apiUrl()+'/api/file/verify/excel').then(function(response){
 						 if(response.excel){
